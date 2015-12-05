@@ -5742,7 +5742,7 @@ angular.module('ngCordova.plugins.pinDialog', [])
 
 angular.module('ngCordova.plugins.powaPOS', [])
 
-  .factory('$cordovaPowaPOS', ['$rootScope', function ($rootScope, $window) {
+  .factory('$cordovaPowaPOS', ['$rootScope', '$window', function ($rootScope, $window) {
 
     $window.addEventListener('PowaPOS', function (event) {
       $rootScope.$evalAsync(function () {
