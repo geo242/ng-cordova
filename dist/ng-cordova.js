@@ -5754,19 +5754,19 @@ angular.module('ngCordova.plugins.powaPOS', [])
 
     return {
       connect: function (success, error) {
-        return $window.plugins.powPOS.connect(success, error);
+        return $window.plugins.powaPOS.connect(success, error);
       },
       scannerBeep: function (beepType, success, error) {
-        return $window.plugins.powPOS.scannerBeep(success, error);
+        return $window.plugins.powaPOS.scannerBeep(success, error);
       },
       scannerAutoScanOnOff: function (autoScan, success, error) {
-        return $window.plugins.powPOS.scannerAutoScanOnOff(success, error);
+        return $window.plugins.powaPOS.scannerAutoScanOnOff(success, error);
       },
       openCashDrawer: function (success, error) {
-        return $window.plugins.powPOS.openCashDrawer(success, error);
+        return $window.plugins.powaPOS.openCashDrawer(success, error);
       },
       printReceipt: function (receiptContent, success, error) {
-        return $window.plugins.powPOS.printReceipt(success, error);
+        return $window.plugins.powaPOS.printReceipt(success, error);
       }
     };
   }]);
