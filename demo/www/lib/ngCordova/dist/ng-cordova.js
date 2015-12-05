@@ -5736,6 +5736,40 @@ angular.module('ngCordova.plugins.pinDialog', [])
     };
   }]);
 
+// install   :      cordova plugin add https://github.com/geo242/cordova-plugin-powapos.git
+// link      :      https://github.com/geo242/cordova-plugin-powapos
+
+angular.module('ngCordova.plugins.powaPOS', [])
+
+  .factory('$cordovaPowaPOS', ['$rootScope', function ($rootScope, $window) {
+
+    $window.addEventListener('PowaPOS', function (event) {
+      $rootScope.$evalAsync(function () {
+        var eventDataType = event.dataType || 'unknown';
+        var eventData = event.data;
+        $rootScope.$broadcast('$cordovaPowaPOS:' + eventDataType, eventData);
+      });
+    });
+
+    return {
+      connect: function (success, error) {
+        return $window.plugins.powPOS.connect(success, error);
+      },
+      scannerBeep: function (beepType, success, error) {
+        return $window.plugins.powPOS.scannerBeep(success, error);
+      },
+      scannerAutoScanOnOff: function (autoScan, success, error) {
+        return $window.plugins.powPOS.scannerAutoScanOnOff(success, error);
+      },
+      openCashDrawer: function (success, error) {
+        return $window.plugins.powPOS.openCashDrawer(success, error);
+      },
+      printReceipt: function (receiptContent, success, error) {
+        return $window.plugins.powPOS.printReceipt(success, error);
+      }
+    };
+  }]);
+
 // install   :      cordova plugin add cordova-plugin-app-preferences
 // link      :      https://github.com/apla/me.apla.cordova.app-preferences
 
@@ -5751,13 +5785,13 @@ angular.module('ngCordova.plugins.preferences', [])
     	 * Decorate the promise object.
     	 * @param promise The promise object.
     	 */
-    	decoratePromise: function(promise){
-    		promise.success = function(fn) {
+    	decoratePromise: function (promise){
+    		promise.success = function (fn) {
 	            promise.then(fn);
 	            return promise;
 	        };
 
-	        promise.error = function(fn) {
+	        promise.error = function (fn) {
 	            promise.then(null, fn);
 	            return promise;
 	        };
@@ -5770,7 +5804,7 @@ angular.module('ngCordova.plugins.preferences', [])
          * @param dict The dictionary. It's optional.
          * @returns Returns a promise.
     	 */
-	    store: function(key, value, dict) {
+	    store: function (key, value, dict) {
 	    	var deferred = $q.defer();
 	    	var promise = deferred.promise;
             
@@ -5805,7 +5839,7 @@ angular.module('ngCordova.plugins.preferences', [])
          * @param dict The dictionary. It's optional.
          * @returns Returns a promise.
 	     */
-	    fetch: function(key, dict) {
+	    fetch: function (key, dict) {
 	    	var deferred = $q.defer();
 	    	var promise = deferred.promise;
             
@@ -5839,7 +5873,7 @@ angular.module('ngCordova.plugins.preferences', [])
          * @param dict The dictionary. It's optional.
          * @returns Returns a promise.
 	     */
-	    remove: function(key, dict) {
+	    remove: function (key, dict) {
 	    	var deferred = $q.defer();
 	    	var promise = deferred.promise;
             
@@ -5871,7 +5905,7 @@ angular.module('ngCordova.plugins.preferences', [])
 	     * Show the application preferences.
          * @returns Returns a promise.
 	     */
-	    show: function() {
+	    show: function () {
 	    	var deferred = $q.defer();
 	    	var promise = deferred.promise;
             
