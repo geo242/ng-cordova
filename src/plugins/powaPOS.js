@@ -27,7 +27,7 @@ angular.module('ngCordova.plugins.powaPOS', [])
         return $window.plugins.powaPOS.openCashDrawer(success, error);
       },
       printReceipt: function (receiptContent, success, error) {
-        return $window.plugins.powaPOS.printReceipt(success, error);
+        return $window.plugins.powaPOS.printReceipt(receiptContent, success, error);
       }
     };
   }]);
